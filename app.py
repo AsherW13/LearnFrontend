@@ -11,7 +11,7 @@ def index():
 
 @app.route('/api/launches')
 def get_launches():
-    spacex_url = 'https://api.spacexdata.com/v4/launches'
+    spacex_url = 'https://api.spacexdata.com/v5/launches'
     response = requests.get(spacex_url)
     if response.status_code == 200:
         return jsonify(response.json())

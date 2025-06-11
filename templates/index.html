@@ -8,8 +8,32 @@
 </head>
 <body class="bg-dark text-white">
   <div class="container py-5">
-    <h1 class="mb-4 text-center">🚀 SpaceX Launches</h1>
-    <ul id="launch-list" class="list-group"></ul>
+    <div class="row">
+      <div class="col-md-5">
+        <h1 class="mb-4">🚀 SpaceX Launch Viewer</h1>
+        <p>
+          Hello
+        </p>
+      </div>
+
+      <div class="col-md-7">
+        <div id="videoCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+          <div class="carousel-inner" id="carousel-inner"></div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#videoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#videoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <ul id="launch-list" class="list-group mt-4"></ul>
+      </div>
+    </div>
   </div>
 
   <!-- <nav class="navbar navbar-dark bg-dark px-3">

@@ -16,6 +16,25 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         list.appendChild(li);
       });
+
+      const carouselInner = document.getElementById("carousel-inner");
+      let first = true;
+
+      data.forEach((launch) => {
+        if (launch.links?.youtube_id) {
+          const item = document.createElement("div");
+          item.className = `carousel-item ${first ? "active" : ""}`;
+          item.innerHTML = `
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/${launch.links.youtube_id}" 
+                      title="${launch.name}" 
+                      allowfullscreen></iframe>
+            </div>
+          `;
+          carouselInner.appendChild(item);
+          first = false;
+        }
+      });
     })
     .catch((err) => {
       console.error("Failed to load launches:", err);
