@@ -10,9 +10,10 @@
   <div class="container py-5">
     <div class="row">
       <div class="col-md-5">
-        <h1 class="mb-4">🚀 SpaceX Launch Viewer</h1>
+        <h1 class="mb-4">🚀 Ship Launch Viewer</h1>
         <p>
-          Hello
+          Hello, this is a personal project to help me learn better frontend principles and tools such as 
+          bootstrap, JS, and the DOM. I want to implement user auth and a proper database backend.
         </p>
       </div>
 
@@ -31,64 +32,16 @@
 
     <div class="row">
       <div class="col-12">
+        <div class="mb-3">
+          <label for="launch-list" class="form-label">Filter Launch</label>
+          <select class="form-select" id="launchSelect">
+          <option value="">All Launches</option>
+          </select>
+        </div>
         <ul id="launch-list" class="list-group mt-4"></ul>
       </div>
     </div>
   </div>
-
-  <!-- <nav class="navbar navbar-dark bg-dark px-3">
-    <button class="btn btn-outline-light me-2" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
-      ☰
-    </button>
-    <a class="navbar-brand" href="#">Asher Weitz</a>
-  </nav>
-
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title">Categories</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Electronics</li>
-        <li class="list-group-item">Clothing</li>
-        <li class="list-group-item">Books</li>
-        <li class="list-group-item">Home</li>
-        <li class="list-group-item">Fitness</li>
-      </ul>
-    </div>
-  </div> -->
-
-  <!-- <div class="container mt-4">
-    <h2>Featured Products</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-2">
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product" />
-          <div class="card-body">
-            <h5 class="card-title">Product 1</h5>
-            <p class="card-text">$29.99</p>
-            <a href="#" class="btn btn-primary w-100">Add to Cart</a>
-          </div>
-        </div>
-      </div>
-      Repeat for more products
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product" />
-          <div class="card-body">
-            <h5 class="card-title">Product 2</h5>
-            <p class="card-text">$49.99</p>
-            <a href="#" class="btn btn-primary w-100">Add to Cart</a>
-          </div>
-        </div>
-      </div>
-      Add more cards as needed
-    </div>
-  </div> -->
-  <!-- <h1>Welcome to Flask + JS!</h1>
-  <button onclick="getData()">Get Data from Flask</button>
-  <p id="output"></p> -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ url_for('static', filename='scripts.js') }}"></script>

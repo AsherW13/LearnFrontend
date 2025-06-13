@@ -3,18 +3,24 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((res) => res.json())
     .then((data) => {
       const list = document.getElementById("launch-list");
+      const select = document.getElementById("launchSelect");
 
       data.slice(0, 20).forEach((launch) => {
-        const li = document.createElement("li");
-        li.className = "list-group-item bg-secondary text-white mb-2 rounded";
+        const option = document.createElement("option");
+        option.value = launch.name;
 
-        li.innerHTML = `
-          <div class="d-flex justify-content-between align-items-center">
-            <span><strong>${launch.name}</strong></span>
-            <span>${new Date(launch.date_utc).toLocaleDateString()}</span>
-          </div>
-        `;
-        list.appendChild(li);
+        option.textContent = launch.name;
+        select.appendChild(option);
+      });
+
+      renderLaunches(data.slice(0, 20));
+
+      select.addEventListener("change", () => {
+        const selected = select.value;
+        const filtered = selected
+          ? data.filter((l) => l.name === selected)
+          : data.slice(0, 20);
+        renderLaunches(filtered);
       });
 
       const carouselInner = document.getElementById("carousel-inner");
@@ -35,6 +41,21 @@ document.addEventListener("DOMContentLoaded", () => {
           first = false;
         }
       });
+
+      function renderLaunches(launches) {
+        list.innerHTML = "";
+        launches.forEach((launch) => {
+          const li = document.createElement("li");
+          li.className = "list-group-item bg-secondary text-white mb-2 rounded";
+          li.innerHTML = `
+            <div class="d-flex justify-content-between align-items-center">
+              <span><strong>${launch.name}</strong></span>
+              <span>${new Date(launch.date_utc).toLocaleDateString()}</span>
+            </div>
+          `;
+        list.appendChild(li);
+      });
+    }
     })
     .catch((err) => {
       console.error("Failed to load launches:", err);
