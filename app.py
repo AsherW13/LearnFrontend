@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import requests
 from flask_cors import CORS
 
@@ -11,11 +11,12 @@ def index():
 
 @app.route('/api/launches')
 def get_launches():
-    spacex_url = 'https://api.spacexdata.com/v5/launches'
+    version = request.args.get('version', 'v5')
+    spacex_url = f'https://api.spacexdata.com/{version}/launches'
     response = requests.get(spacex_url)
     if response.status_code == 200:
         return jsonify(response.json())
-    return jsonify({'error': 'Failed to fetch latest launches'}), 500
+    return jsonify({'error': 'Failed to fetch launches'}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
