@@ -7,4 +7,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+RUN adduser -D appuser
+USER appuser
+
+
 CMD ["python", "app.py"]
