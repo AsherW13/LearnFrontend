@@ -19,4 +19,4 @@ def get_launches():
     return jsonify({'error': 'Failed to fetch launches'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
