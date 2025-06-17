@@ -1,4 +1,4 @@
-FROM python:3.11-slim-bookworm@sha256:<secure_digest>
+FROM python:3-alpine3.21
 
 WORKDIR /app
 
