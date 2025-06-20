@@ -12,3 +12,11 @@ button {
   background-color: rgba(0, 0, 0, 0.3) !important; /* semi-transparent black overlay */
   color: white !important;
 }
+
+.navbar-shadow {
+  transition: box-shadow 0.3s ease;
+}
+
+.navbar-shadow.scrolled {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}

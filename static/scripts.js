@@ -2,6 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("/api/launches")
     .then((res) => res.json())
     .then((data) => {
+
+      document.addEventListener("scroll", () => {
+        const element = document.querySelector(".navbar-shadow");
+
+        if(window.scrollY > 10)
+        {
+          element.classList.add("scrolled");
+        }
+        else
+        {
+          element.classList.remove("scrolled");
+        }
+      });
       const list = document.getElementById("launch-list");
       const yearSelect = document.getElementById("yearSelect");
       const carouselInner = document.getElementById("carousel-inner");
