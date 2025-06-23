@@ -22,10 +22,10 @@
         </div>
 
         <div class="col-md-7">
-          <div id="videoCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
-            <div class="carousel-inner" id="carousel-inner">
+          <div :key="carouselKey" id="videoCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
               <div 
-                v-for="(launch, index) in filteredLaunches.filter(l => l.links?.youtube_id)" 
+                v-for="(launch, index) in filteredYouTubeLaunches" 
                 :key="launch.id" 
                 class="carousel-item" 
                 :class="{ active: index === 0 }"

@@ -24,6 +24,7 @@ createApp({
     return {
       launches: [],
       selectedYear: '',
+      carouselKey: 0  // used to force carousel to rerender
     };
   },
   computed: {
@@ -35,22 +36,32 @@ createApp({
     },
     filteredLaunches() {
       if (!this.selectedYear) return this.launches.slice(0, 20);
+      const selected = parseInt(this.selectedYear);
       return this.launches.filter(
-        l => new Date(l.date_utc).getFullYear().toString() === this.selectedYear
+        l => new Date(l.date_utc).getFullYear() === selected
       );
+    },
+    filteredYouTubeLaunches() {
+      return this.filteredLaunches.filter(l => l.links?.youtube_id);
+    }
+  },
+  watch: {
+    filteredLaunches() {
+      this.carouselKey += 1; // force carousel re-render
+      this.$nextTick(() => {
+        this.initCarouselHighlighting();
+      });
     }
   },
   mounted() {
     fetch("/api/launches")
       .then(res => res.json())
       .then(data => {
-        console.log("Fetched launches:", data);
         this.launches = data;
         this.$nextTick(() => {
           this.initCarouselHighlighting();
         });
-      })
-      .catch(e => console.error("Failed to fetch launches", e));
+      });
   },
   methods: {
     formatDate(dateString) {
@@ -59,6 +70,7 @@ createApp({
     initCarouselHighlighting() {
       const carousel = document.getElementById("videoCarousel");
       if (!carousel) return;
+      carousel.removeEventListener("slid.bs.carousel", this.highlightActiveLaunch);
       carousel.addEventListener("slid.bs.carousel", this.highlightActiveLaunch);
       this.highlightActiveLaunch();
     },
@@ -66,7 +78,6 @@ createApp({
       const carousel = document.getElementById("videoCarousel");
       const activeItem = carousel.querySelector(".carousel-item.active");
       const activeId = activeItem?.dataset.youtubeId || "";
-
       const listItems = document.querySelectorAll("#launch-list li");
       listItems.forEach(li => {
         if (li.dataset.youtubeId === activeId && activeId !== "") {
